@@ -1,7 +1,11 @@
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+require 'bundler'
+Bundler::GemHelper.install_tasks
 
-require File.expand_path('../config/application', __FILE__)
-require 'rake'
+require 'rspec/core/rake_task'
 
-UnifiedDB::Application.load_tasks
+RSpec::Core::RakeTask.new do |t|
+  t.rspec_opts = ["-c", "-f progress"]
+  t.pattern = 'spec/**/*_spec.rb'
+end
+
+task :default => :spec
