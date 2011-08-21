@@ -1,3 +1,5 @@
+require 'imdb_party'
+
 module UnifiedDB
   module Backend
     class IMDB < Base

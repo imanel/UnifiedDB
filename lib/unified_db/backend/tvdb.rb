@@ -1,3 +1,5 @@
+require 'tvdb_party'
+
 module UnifiedDB
   module Backend
     class TVDB < Base
@@ -36,7 +38,8 @@ module UnifiedDB
       def service; 'tvdb'; end
     
       def handler
-        @handler ||= TvdbParty::Search.new(ENV['TVDB_KEY'])
+        raise ApiError, 'no TVDB secret provided' if UnifiedDB.tvdb_secret.nil? 
+        @handler ||= TvdbParty::Search.new(UnifiedDB.tvdb_secret)
       end
         
       def format_posters(posters)

@@ -12,8 +12,12 @@ module UnifiedDB
         end
       end
     
-      def as_json(*args)
+      def to_h
         allowed_keys.inject({}) { |hash, key| hash[key] = instance_variable_get("@#{key}"); hash }
+      end
+      
+      def to_json(*args)
+        UnifiedDB.json_encoder.encode to_h
       end
     
       private

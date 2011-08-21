@@ -22,6 +22,11 @@ module UnifiedDB
         end
       
         result
+      rescue ApiError => e
+        {
+          :status => 'error',
+          :reason => e.message
+        }
       end
     
       def find_by_id(id)
