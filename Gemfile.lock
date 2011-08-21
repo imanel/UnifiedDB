@@ -30,9 +30,14 @@ GEM
     activesupport (3.0.10)
     arel (2.0.10)
     builder (2.1.2)
+    crack (0.1.8)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    httparty (0.7.8)
+      crack (= 0.1.8)
     i18n (0.5.0)
+    imdb_party (0.6.1)
+      httparty
     mail (2.2.19)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -67,10 +72,13 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.29)
+    yajl-ruby (0.8.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  imdb_party
   rails (= 3.0.10)
   sqlite3
+  yajl-ruby
