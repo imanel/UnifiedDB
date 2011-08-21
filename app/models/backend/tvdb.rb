@@ -16,8 +16,8 @@ module Backend
         :writers => [],
         :posters => format_posters(movie.banners)
       )
-    # rescue
-    #   raise ApiError, 'not found'
+    rescue
+      raise ApiError, 'not found'
     end
     
     def find_by_title(title)
