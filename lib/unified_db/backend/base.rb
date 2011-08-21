@@ -15,8 +15,8 @@ module UnifiedDB
       def find(params)
         if params[:id]
           find_by_id params[:id]
-        elsif params[:t]
-          find_by_title params[:t]
+        elsif params[:t] || params[:title]
+          find_by_title(params[:t] || params[:title])
         else
           raise ApiError, 'no search criteria specified'
         end
