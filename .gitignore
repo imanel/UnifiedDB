@@ -1,4 +1,5 @@
 .bundle
+config/initializers/local.rb
 db/*.sqlite3
 log/*.log
 tmp/

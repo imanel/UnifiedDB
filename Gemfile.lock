@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/maddox/tvdb_party.git
+  revision: 6f2479beb50478cbbbd0821443d39482ceab58d1
+  specs:
+    tvdb_party (0.6.0)
+      httparty (>= 0.6.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -81,4 +88,5 @@ DEPENDENCIES
   imdb_party
   rails (= 3.0.10)
   sqlite3
+  tvdb_party!
   yajl-ruby

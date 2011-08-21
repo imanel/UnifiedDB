@@ -43,5 +43,17 @@ module Backend
     
     def service; 'base'; end
     
+    def format_actors(actors)
+      Array(actors).collect { |a| { a.name => a.role } }
+    end
+    
+    def format_directors(directors)
+      Array(directors).collect(&:name)
+    end
+    
+    def format_writers(writers)
+      Array(writers).collect(&:name)
+    end
+    
   end
 end

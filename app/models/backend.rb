@@ -1,7 +1,8 @@
 module Backend
   
   AVAILABLE = {
-    'imdb' => Backend::IMDB
+    'imdb' => Backend::IMDB,
+    'tvdb' => Backend::TVDB
   }
   
   def self.select(name)

@@ -6,18 +6,15 @@ module Backend
       @result = Result::ID.new(
         :id => movie.imdb_id,
         :title => movie.title,
-        :directors => movie.directors,
-        :writers => movie.writers,
-        :tagline => movie.tagline,
-        :company => movie.company,
-        :plot => movie.plot,
-        :runtime => movie.runtime,
-        :rating => movie.rating,
-        :poster_url => movie.poster_url,
+        :overview => movie.plot,
         :release_date => movie.release_date,
-        :certification => movie.certification,
         :genres => movie.genres,
-        :actors => movie.actors
+        :rating => movie.rating,
+        :runtime => movie.runtime.to_i,
+        :actors => format_actors(movie.actors),
+        :directors => format_directors(movie.directors),
+        :writers => format_writers(movie.writers),
+        :posters => Array(movie.poster_url)
       )
     rescue
       raise ApiError, 'not found'
@@ -31,8 +28,6 @@ module Backend
           :title => movie[:title],
           :year => movie[:year])
       end
-    rescue
-      railse ApiError, 'not found'
     end
     
     private
