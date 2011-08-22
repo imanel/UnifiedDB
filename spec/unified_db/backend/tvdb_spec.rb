@@ -6,7 +6,7 @@ describe UnifiedDB::Backend::TVDB do
   it "should return valid find by title" do
     result = subject.find(:title => 'StarGate')
     result.class.should eql(Hash)
-    result.keys.sort.should eql([:result, :service, :status])
+    do_sort(result.keys).should eql([:result, :service, :status])
     result[:status].should eql('success')
     result[:service].should eql('tvdb')
     result[:result].class.should eql(Array)
@@ -22,7 +22,7 @@ describe UnifiedDB::Backend::TVDB do
     decoded = Yajl::Parser.new.parse encoded
     
     decoded.class.should eql(Hash)
-    decoded.keys.sort.should eql(['result', 'service', 'status'])
+    do_sort(decoded.keys).should eql(['result', 'service', 'status'])
     decoded['status'].should eql('success')
     decoded['service'].should eql('tvdb')
     decoded['result'].class.should eql(Array)
@@ -38,7 +38,7 @@ describe UnifiedDB::Backend::TVDB do
   it "should return empty array if invalid find by title specified" do
     result = subject.find(:title => "qwertyuiopasdfghjkllzxcvbnm")
     result.class.should eql(Hash)
-    result.keys.sort.should eql([:result, :service, :status])
+    do_sort(result.keys).should eql([:result, :service, :status])
     result[:status].should eql('success')
     result[:service].should eql('tvdb')
     result[:result].class.should eql(Array)
@@ -49,7 +49,7 @@ describe UnifiedDB::Backend::TVDB do
   it "should return valid find by id" do
     result = subject.find(:id => '72449')
     result.class.should eql(Hash)
-    result.keys.sort.should eql([:result, :service, :status])
+    do_sort(result.keys).should eql([:result, :service, :status])
     result[:status].should eql('success')
     result[:service].should eql('tvdb')
     
@@ -75,7 +75,7 @@ describe UnifiedDB::Backend::TVDB do
   it "should return error if id was not found" do
     result = subject.find(:id => '72449123')
     result.class.should eql(Hash)
-    result.keys.sort.should eql([:reason, :status])
+    do_sort(result.keys).should eql([:reason, :status])
     result[:status].should eql('error')
     result[:reason].should eql('not found')
   end

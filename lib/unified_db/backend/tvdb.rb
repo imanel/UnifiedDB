@@ -6,6 +6,8 @@ module UnifiedDB
     
       def find_by_id(id)
         movie = handler.get_series_by_id(id)
+        raise if movie.nil?
+        
         @result = Result::ID.new(
           :id => movie.id,
           :title => movie.name,
