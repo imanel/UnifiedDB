@@ -4,13 +4,13 @@ describe UnifiedDB::Backend::TVDB do
   subject { described_class.new }
   
   it "should return valid find by title" do
-    result = subject.find(:title => 'StarGate')
+    result = subject.find(:title => 'StarGate SG-1')
     result.class.should eql(Hash)
     do_sort(result.keys).should eql([:result, :service, :status])
     result[:status].should eql('success')
     result[:service].should eql('tvdb')
     result[:result].class.should eql(Array)
-    result[:result].size.should be > 3
+    result[:result].size.should eql 1
     
     first_result = result[:result].first
     first_result.class.should eql(UnifiedDB::Result::Title)
@@ -26,7 +26,7 @@ describe UnifiedDB::Backend::TVDB do
     decoded['status'].should eql('success')
     decoded['service'].should eql('tvdb')
     decoded['result'].class.should eql(Array)
-    decoded['result'].size.should be > 3
+    decoded['result'].size.should eql 1
     
     first_result = decoded['result'].first
     first_result.class.should eql(Hash)

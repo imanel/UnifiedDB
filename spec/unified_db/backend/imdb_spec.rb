@@ -59,7 +59,7 @@ describe UnifiedDB::Backend::IMDB do
     result[:result].overview.class.should eql(String)
     result[:result].overview.length.should be > 20
     result[:result].release_date.class.should eql(String)
-    result[:result].genres.should eql(["Action", "Crime", "Thriller"])
+    result[:result].genres.should eql(["Action", "Crime", "Drama", "Thriller"])
     result[:result].rating.class.should eql(Float)
     result[:result].rating.should be > 4
     result[:result].rating.should be < 10
