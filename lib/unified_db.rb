@@ -15,5 +15,3 @@ module UnifiedDB
     end
   end
 end
-
-require "#{UnifiedDB::ROOT}/ext/crack"
