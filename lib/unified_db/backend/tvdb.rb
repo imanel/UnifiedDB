@@ -3,11 +3,11 @@ require 'tvdb_party'
 module UnifiedDB
   module Backend
     class TVDB < Base
-    
+
       def find_by_id(id)
         movie = handler.get_series_by_id(id)
         raise if movie.nil?
-        
+
         @result = Result::ID.new(
           :id => movie.id,
           :title => movie.name,
@@ -24,7 +24,7 @@ module UnifiedDB
       rescue
         raise ApiError, 'not found'
       end
-    
+
       def find_by_title(title)
         movies = handler.search(title)
         movies.each do |movie|
@@ -33,22 +33,23 @@ module UnifiedDB
             :title => movie['SeriesName'],
             :year => movie['FirstAired'].to_s.split('-')[0])
         end
+        result
       end
-    
+
       private
-    
+
       def service; 'tvdb'; end
-    
+
       def handler
-        raise ApiError, 'no TVDB secret provided' if UnifiedDB.tvdb_secret.nil? 
+        raise ApiError, 'no TVDB secret provided' if UnifiedDB.tvdb_secret.nil?
         @handler ||= TvdbParty::Search.new(UnifiedDB.tvdb_secret)
       end
-        
+
       def format_posters(posters)
         list = posters.select { |poster| ['season', 'poster'].include? poster.banner_type }
         list.sort { |a,b| b.banner_type <=> a.banner_type }.collect(&:url)
       end
-    
+
     end
   end
 end

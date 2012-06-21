@@ -1,9 +1,10 @@
+require 'imdb'
 require 'imdb_party'
 
 module UnifiedDB
   module Backend
     class IMDB < Base
-    
+
       def find_by_id(id)
         movie = handler.find_movie_by_id(id)
         @result = Result::ID.new(
@@ -22,25 +23,29 @@ module UnifiedDB
       rescue
         raise ApiError, 'not found'
       end
-    
+
       def find_by_title(title)
-        movies = handler.find_by_title(title)
+        # movies = handler.find_by_title(title)
+        movies = Imdb::Search.new(title).movies
         movies.each do |movie|
+          id = "tt#{movie.id}"
+          title1, year, title2 = movie.title.match(/(.*) \(([0-9]{4})\)(.*)/)[1..3] rescue next
           @result << Result::Title.new(
-            :id => movie[:imdb_id],
-            :title => movie[:title],
-            :year => movie[:year])
+            :id => id,
+            :title => [title1.to_s.strip, title2.to_s.strip].join(" ").strip,
+            :year => year)
         end
+        result
       end
-    
+
       private
-    
+
       def service; 'imdb'; end
-    
+
       def handler
         @handler ||= ImdbParty::Imdb.new(:anonymize => true)
       end
-    
+
     end
   end
 end
