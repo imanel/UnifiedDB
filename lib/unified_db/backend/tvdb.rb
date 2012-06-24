@@ -10,12 +10,12 @@ module UnifiedDB
 
         @result = Result::ID.new(
           :id => movie.id,
-          :title => movie.name,
-          :overview => movie.overview,
+          :title => movie.name.to_s,
+          :overview => movie.overview.to_s,
           :release_date => movie.first_aired.to_s,
           :genres => movie.genres,
-          :rating => movie.rating,
-          :runtime => movie.runtime.to_i,
+          :rating => movie.rating.to_s,
+          :runtime => movie.runtime.to_i.to_s,
           :actors => format_actors(movie.actors),
           :directors => [],
           :writers => [],

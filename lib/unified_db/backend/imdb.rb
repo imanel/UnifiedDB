@@ -9,12 +9,12 @@ module UnifiedDB
         movie = handler.find_movie_by_id(id)
         @result = Result::ID.new(
           :id => movie.imdb_id,
-          :title => movie.title,
-          :overview => movie.plot,
-          :release_date => movie.release_date,
+          :title => movie.title.to_s,
+          :overview => movie.plot.to_s,
+          :release_date => movie.release_date.to_s,
           :genres => movie.genres,
-          :rating => movie.rating,
-          :runtime => movie.runtime.to_i,
+          :rating => movie.rating.to_s,
+          :runtime => movie.runtime.to_i.to_s,
           :actors => format_actors(movie.actors),
           :directors => format_directors(movie.directors),
           :writers => format_writers(movie.writers),

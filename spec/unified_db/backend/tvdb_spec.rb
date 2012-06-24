@@ -60,10 +60,10 @@ describe UnifiedDB::Backend::TVDB do
     result[:result].overview.length.should be > 20
     result[:result].release_date.class.should eql(String)
     result[:result].genres.should eql(["Action and Adventure", "Science-Fiction"])
-    result[:result].rating.class.should eql(Float)
-    result[:result].rating.should be > 4
-    result[:result].rating.should be < 10
-    result[:result].runtime.should eql(60)
+    result[:result].rating.class.should eql(String)
+    result[:result].rating.to_f.should be > 4
+    result[:result].rating.to_f.should be < 10
+    result[:result].runtime.should eql("60")
     result[:result].actors.class.should eql(Array)
     result[:result].actors.first.should eql({"Christopher Judge"=>"Teal'c"})
     result[:result].directors.should eql([])
