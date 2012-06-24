@@ -13,5 +13,12 @@ module Imdb
       [Imdb::Movie.new(id, title)]
     end
 
+    def parse_movies
+      document.search("a[@href^='http://anonymouse.org/cgi-bin/anon-www.cgi/http://akas.imdb.com/title/tt']").each do |pm|
+        pm["href"] = pm["href"].gsub("http://anonymouse.org/cgi-bin/anon-www.cgi/http://akas.imdb.com", "")
+      end
+      super
+    end
+
   end
 end

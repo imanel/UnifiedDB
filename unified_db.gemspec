@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{Scrapper for multiple Movie Databases}
 
   s.add_dependency 'yajl-ruby'
-  s.add_dependency 'imdb', '~> 0.6.8'
+  s.add_dependency 'imdb', '0.6.8'
   s.add_dependency 'httparty', '0.8.1'
   s.add_dependency 'imdb_party', '0.6.1'
   s.add_dependency 'tvdb_party', '0.6.2'
