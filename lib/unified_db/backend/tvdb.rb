@@ -46,7 +46,7 @@ module UnifiedDB
       end
 
       def format_posters(posters)
-        list = posters.select { |poster| ['season', 'poster'].include? poster.banner_type && poster.banner_type2 != 'seasonwide' }
+        list = posters.select { |poster| (['season', 'poster'].include? poster.banner_type) && poster.banner_type2 != 'seasonwide' }
         list.sort { |a,b| b.banner_type <=> a.banner_type }.collect(&:url)
       end
 
