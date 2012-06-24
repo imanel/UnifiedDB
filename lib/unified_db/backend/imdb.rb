@@ -29,8 +29,8 @@ module UnifiedDB
         movies = Imdb::Search.new(title).movies
         movies.each do |movie|
           id = "tt#{movie.id}"
-          title = movie.title.encode('iso-8859-1')
-          title.force_encoding('utf-8')
+          title = movie.title
+          title = title.encode('iso-8859-1').force_encoding('utf-8') if title.respond_to? :force_encoding
           title1, year, tmp, title2 = title.match(/(.*) \(([0-9]{4})(\/[a-zA-Z]*)?\)(.*)/)[1..4] rescue next
           @result << Result::Title.new(
             :id => id,
