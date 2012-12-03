@@ -4,7 +4,7 @@ module Imdb
   class Search < MovieList
 
     def self.query(query)
-      open("http://anonymouse.org/cgi-bin/anon-www.cgi/http://akas.imdb.com/find?q=#{CGI::escape(query)};s=tt")
+      open("http://anonymouse.org/cgi-bin/anon-www.cgi/http://akas.imdb.com/find?q=#{CGI::escape(query)}&s=tt")
     end
 
     def parse_movie
